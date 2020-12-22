@@ -1,0 +1,18 @@
+.element__group {
+  width: 20.76px;
+  height: 18.13px;
+  border: none;
+  cursor: pointer;
+  padding: 0%;
+  background: #ffffff;
+  align-items: center;
+  justify-content: center;
+}
+
+.element__group:hover {
+  opacity: 0.5;
+}
+
+.element__group:focus {
+  outline: none;
+  }

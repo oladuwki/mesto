@@ -1,0 +1,25 @@
+.elements {
+  margin: 51px 15.625% 0 15.625%;
+  max-width: 68.75%;
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  gap: 17px;
+}
+
+@media screen and (max-width: 768px) {
+  .elements {
+    grid-template-columns: 48% 48%;
+    gap: 23px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .elements {
+    margin: auto;
+    margin-top: 36px;
+    max-width: 88.125%;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 20px;
+  }
+}
