@@ -1,11 +1,11 @@
-.profile__info_vector {
+.profile__info-vector {
   max-width: 10px;
   height: 10px;
   cursor: pointer;
 }
 
 @media screen and (min-width: 320px) and (max-width: 425px) {
-  .profile__info_vector {
+  .profile__info-vector {
     max-width: 5.5px;
     height: 5.5px;
     cursor: pointer;

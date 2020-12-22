@@ -1,6 +1,6 @@
 let content = document.querySelector('.content');
 let profile = content.querySelector('.profile');
-let profileButton = profile.querySelector('.profile__info_edit__button');
+let profileButton = profile.querySelector('.profile__info-button__edit');
 let popUp = content.querySelector('.popup');
 let popUpCloseButton = popUp.querySelector('.popup__close-button');
 let saveButton = popUp.querySelector('.popup__button');
