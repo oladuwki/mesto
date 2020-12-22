@@ -1,89 +1,87 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./pages/index.css">
-</head>
-<body class="page">
-  <header class="header">
-    <img src="./images/Vector.svg" alt="логотип 'Место'" class="header__logo">
-    <div class="header__line"></div>
-  </header>
-  
-  <main class="content">
-    <section class="profile">
-      <img src="./images/profile__image.jpg" alt="Фото профиля" class="profile__avatar">
-      <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__info-btn"><img src="./images/Vector1.svg" alt="Кнопка редакции" class="profile__vector"></button>
-          <p class="profile__job">Исследователь океана</p>
-      </div>
-     
-      <button class="profile__add-button">
-        <img src="./images/Vector2.svg" alt="Кнопка добавления" class="profile__vector-add">
-      </button>
-    </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <img src="./images/Vector.svg" alt="логотип 'Место'" class="header__logo" />
+      <div class="header__line"></div>
+    </header>
 
-    <section class="elements">
-      <div class="element">
-        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачевск" class="element__image">
-        <div class="element__title">
-          <h2 class="element__name">Карачевск</h2>
-          <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка"  class="element__group-image"></button>
-        </div>      
+    <main class="content">
+      <section class="profile">
+        <img src="./images/profile__image.jpg" alt="Фото профиля" class="profile__avatar" />
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__info-btn"></button>
+          <p class="profile__job">Исследователь океана</p>
+        </div>
+
+        <button class="profile__add-button"></button>
+      </section>
+
+      <section class="elements">
+        <div class="element">
+          <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачевск" class="element__image" />
+          <div class="element__title">
+            <h2 class="element__name">Карачевск</h2>
+            <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка" class="element__group-image" /></button>
+          </div>
         </div>
         <div class="element">
-          <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="element__image">
+          <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="element__image" />
           <div class="element__title">
             <h2 class="element__name">Гора Эльбрус</h2>
-            <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка"  class="element__group-image"></button>
-          </div>      
+            <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка" class="element__group-image" /></button>
           </div>
-          <div class="element">
-            <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="element__image">
-            <div class="element__title">
-              <h2 class="element__name">Домбай</h2>
-              <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка"  class="element__group-image"></button>
-            </div>      
-            </div>
-            <div class="element">
-              <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="element__image">
-              <div class="element__title">
-                <h2 class="element__name">Гора Эльбрус</h2>
-                <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка"  class="element__group-image"></button>
-              </div>      
-              </div>
-              <div class="element">
-                <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="element__image">
-                <div class="element__title">
-                  <h2 class="element__name">Домбай</h2>
-                  <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка"  class="element__group-image"></button>
-                </div>      
-                </div>
-                <div class="element">
-                  <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачевск" class="element__image">
-                  <div class="element__title">
-                    <h2 class="element__name">Карачевск</h2>
-                    <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка"  class="element__group-image"></button>
-                  </div>      
-                  </div>
-    </section>
-    <section class="popup"> 
-      <button class="popup__close-button"><img src="./images/CloseIcon.svg" alt="Крестик" class="popup__close-icon"></button>
-      <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" placeholder="Название" class="popup__name">
-        <input type="text" placeholder="О себе" class="popup__job">
-        <button class="popup__button">Сохранить</button>
-      </div>
-    </section>
-  </main>
-  
-  <footer class="footer">
-    <h2 class="footer__title">© 2020 Mesto Russia</h2>
-  </footer>
-  <script src="script.js"></script>
-</body>
+        </div>
+        <div class="element">
+          <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="element__image" />
+          <div class="element__title">
+            <h2 class="element__name">Домбай</h2>
+            <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка" class="element__group-image" /></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="element__image" />
+          <div class="element__title">
+            <h2 class="element__name">Гора Эльбрус</h2>
+            <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка" class="element__group-image" /></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="element__image" />
+          <div class="element__title">
+            <h2 class="element__name">Домбай</h2>
+            <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка" class="element__group-image" /></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачевск" class="element__image" />
+          <div class="element__title">
+            <h2 class="element__name">Карачевск</h2>
+            <button class="element__group"><img src="./images/Vector3.svg" alt="Кнопка лайка" class="element__group-image" /></button>
+          </div>
+        </div>
+      </section>
+      <section class="popup">
+        <button class="popup__close-button"><img src="./images/CloseIcon.svg" alt="Крестик" class="popup__close-icon" /></button>
+        <div class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" placeholder="Название" class="popup__name" />
+          <input type="text" placeholder="О себе" class="popup__job" />
+          <button class="popup__button">Сохранить</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <h2 class="footer__title">© 2020 Mesto Russia</h2>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>

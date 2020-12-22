@@ -1,13 +1,16 @@
 .profile__info-btn {
   box-sizing: border-box;
   border: 1px solid #ffffff;
-  background-color: rgba(0, 0, 0, 0.7);
   width: 24px;
+  background-color: rgba(0, 0, 0, 0.7);
   height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background-image: url(../../../images/Vector1.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__info-btn:hover {
