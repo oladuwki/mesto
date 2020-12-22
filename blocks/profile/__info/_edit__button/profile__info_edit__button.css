@@ -1,4 +1,4 @@
-.profile__info-button_edit {
+.profile__info-edit_btn {
   box-sizing: border-box;
   border: 1px solid #ffffff;
   background-color: rgba(0, 0, 0, 0.7);
@@ -10,19 +10,19 @@
   cursor: pointer;
 }
 
-.profile__info-button_edit:hover {
+.profile__info-edit_btn:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {
-  .profile__info-button_edit {
+  .profile__info-edit_btn {
     width: 18px;
     height: 18px;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 425px) {
-  .profile__info-button_edit {
+  .profile__info-edit_btn {
     width: 18px;
     height: 18px;
   }
