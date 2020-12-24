@@ -16,6 +16,13 @@
   opacity: 0.6;
 }
 
+@media screen and (max-width: 768px) {
+  .popup__close-button {
+    position: relative;
+    margin: 65px 18% 0 74.7%;
+  }
+}
+
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .popup__close-button {
     position: relative;
