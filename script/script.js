@@ -5,8 +5,8 @@ let popUp = document.querySelector('.popup');
 let popUpCloseButton = popUp.querySelector('.popup__close-button');
 let profileName = profile.querySelector('.profile__name');
 let profileJob = profile.querySelector('.profile__job');
-let nameInput = document.querySelector('.popup_value_name');
-let jobInput = document.querySelector('.popup_value_job');
+let nameInput = document.querySelector('.popup__input_value_name');
+let jobInput = document.querySelector('.popup__input_value_job');
 let formElement = popUp.querySelector('.popup__form');
 const user = {
   name: "Жак-Ив Кусто",
