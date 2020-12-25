@@ -1,6 +1,6 @@
 .element__group {
-  width: 21.76px;
-  height: 18.13px;
+  width: 22px;
+  height: 19px;
   border: none;
   cursor: pointer;
   padding: 0%;
@@ -8,7 +8,6 @@
   align-items: center;
   justify-content: center;
   background-image: url(../../../images/like.svg);
-  background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
   object-fit: cover;
@@ -20,4 +19,7 @@
 
 .element__group:focus {
   outline: none;
+  opacity: none;
+  background-image: url(../../../images/likeactv.svg);
+  background-repeat: no-repeat;
   }

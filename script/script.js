@@ -15,7 +15,6 @@ const user = {
 
 setUser(user);
 
-
 function popUpOpen() {
   popUp.classList.add('popup_opened');
   nameInput.value = user.name;
