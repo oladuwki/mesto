@@ -4,13 +4,18 @@
   justify-content: center;
   margin: auto;
   flex-direction: column;
-  width: 430px;
+  width: 510px;
 }
 
+@media screen and (max-width: 768px) {
+  .popup__container {
+    width: 420px;
+  }
+}
 
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .popup__container {
-    width: 88.125%;
+    width: 282px;
     position: relative;
     margin: auto;
   }
