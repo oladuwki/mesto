@@ -1,6 +1,7 @@
 .element__title {
   width: 87.24%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-left: 7.45%;
   margin-right: 5.32%;

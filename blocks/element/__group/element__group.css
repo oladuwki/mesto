@@ -1,5 +1,5 @@
 .element__group {
-  width: 20.76px;
+  width: 21.76px;
   height: 18.13px;
   border: none;
   cursor: pointer;
@@ -8,6 +8,10 @@
   align-items: center;
   justify-content: center;
   background-image: url(../../../images/vector3.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .element__group:hover {
