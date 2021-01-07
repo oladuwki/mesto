@@ -17,9 +17,3 @@
   opacity: 0.5;
 }
 
-.element__group:focus {
-  outline: none;
-  opacity: none;
-  background-image: url(../../../images/likeactv.svg);
-  background-repeat: no-repeat;
-  }
