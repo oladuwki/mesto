@@ -21,7 +21,7 @@
     width: 90%;
     margin: auto;
     margin-top: 36px;
-    grid-template-columns: repeat(2, 48%);
+    grid-template-columns: repeat(2, 48.5%);
     gap: 17px;
   }
 }
