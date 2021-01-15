@@ -3,7 +3,7 @@ let profile = content.querySelector('.profile');
 let profileButton = profile.querySelector('.profile__info-btn');
 let profileAddButton = document.querySelector('.profile__add-button');
 let popUp = document.querySelector('.popup');
-let popUpCloseButton = document.querySelectorAll('.popup__close-button');
+let popUpCloseButtons = document.querySelectorAll('.popup__close-button');
 let popUpSecond = document.querySelector('.popup__second');
 let profileName = profile.querySelector('.profile__name');
 let profileJob = profile.querySelector('.profile__job');
@@ -13,9 +13,14 @@ let [formElement, formElementSecond] = document.querySelectorAll('.popup__form')
 let placeNameInput = document.querySelector('.popup__input_value_place');
 let linkInput = document.querySelector('.popup__input_value_link');
 let likeButtons = document.querySelectorAll('.element__group');
+let popUpPhotoCard = document.querySelector('.popup__photo');
+let popUpPhotoButton = document.querySelector('.elemen__image');
 const elementsContainer = document.querySelector('.elements');
+let removeCardButton = document.querySelector('.element__trash');
+let popUpPhotoImage = document.querySelector('.popup-photo__image');
+let popUpPhotoName = document.querySelector('.popup-photo__name');
 
-console.log(popUpCloseButton);
+console.log(popUpCloseButtons);
 function popUpOpen() {
   popUp.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
@@ -29,6 +34,13 @@ function popUpOpenSecond() {
 function popUpClose() {
   popUp.classList.remove('popup_opened');
   popUpSecond.classList.remove('popup_opened');
+  popUpPhotoCard.classList.remove('popup_opened');
+}
+
+function popUpPhotoOpen(card) {
+  popUpPhotoCard.classList.add('popup_opened');
+  popUpPhotoImage.src = card.link;
+  popUpPhotoName.textContent = card.name;
 }
 
 function handleFormSubmit (evt) {
@@ -45,14 +57,15 @@ function togleLike(evt) {
 
 profileButton.addEventListener('click', popUpOpen);
 profileAddButton.addEventListener('click', popUpOpenSecond);
-popUpCloseButton[0].addEventListener('click', popUpClose);
-popUpCloseButton[1].addEventListener('click', popUpClose);
+popUpCloseButtons.forEach((button) => {
+  button.addEventListener('click', popUpClose);
+});
 formElement.addEventListener('submit', handleFormSubmit);
 
 
 console.log(likeButtons);
 
-const initialCards = [
+let initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -87,13 +100,21 @@ const elementsList = document.querySelector('.elements');
 function getCardTemplate(card){
   const template = cardTemplate.cloneNode(true);
 
-  template.querySelector('.element__image').src = card.link;
+  template.querySelector('.element__image').style.backgroundImage = "url('" + card.link + "')";
+  template.querySelector('.element__image').addEventListener('click', (evt) => {
+    if (evt.target.type !== "button"){
+      popUpPhotoOpen(card);
+    }
+  });
   template.querySelector('.element__name').textContent = card.name;
+  template.querySelector('.element__trash').addEventListener('click', (evt) => {
+    removeCard(card);
+    removeCardTemplate(evt);
+  });
   template.querySelector('.element__group').addEventListener('click', togleLike);
 
   return template;
 };
-
 
 function insertCards(){ //
   initialCards.forEach((card) => { //получаем данные из массива
@@ -128,6 +149,22 @@ function appendCard(card){//отрисовка карточек в конце
 function createCard(card) {//добавление информации о карточках в массив и создание карточки
   initialCards.unshift(card);
   prependCard(card);
+};
+
+function removeCard(card) {
+  initialCards = initialCards.filter((item) => {
+    return item.name !== card.name;
+  });
+};
+
+function removeCardTemplate(evt) {
+  const cardItem = evt.target.closest('.element');
+    cardItem.remove();
+};
+
+
+function remove(evt) {
+  console.log(evt);
 };
 
 formElementSecond.addEventListener('submit', handleFormSubmitSecond);//событие нажатия кнопки 'сохранить'

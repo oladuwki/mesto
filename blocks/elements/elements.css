@@ -3,7 +3,7 @@
   margin-top: 51px;
   max-width: 68.75%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 32%);
   gap: 17px;
 }
 
@@ -18,19 +18,19 @@
 
 @media screen and (max-width: 768px) {
   .elements {
-    max-width: 90%;
+    width: 90%;
     margin: auto;
     margin-top: 36px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 48%);
     gap: 17px;
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 450px) {
   .elements {
     margin: auto;
     margin-top: 36px;
-    max-width: 88.125%;
+    width: 88.125%;
     grid-template-columns: 100%;
     gap: 20px;
   }
