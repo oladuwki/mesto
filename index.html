@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
+    
     <header class="header">
       <img src="./images/header.svg" alt="логотип 'Место'" class="header__logo">
     </header>
@@ -19,25 +20,18 @@
           <button type='button' class="profile__info-btn"></button>
           <p class="profile__job">Исследователь океана</p>
         </div>
-
         <button type='button' class="profile__add-button"></button>
       </section>
 
-
-
-
-      <section class="elements"></section>
-
-
-
+      <section class="elements">
+        <h2 style="display: none;">Заголовок</h2>
+      </section>
 
       <section class="popup">
-       
         <div class="popup__container">
           <button type='button' class="popup__close-button"></button>
           <form name="popupForm" class="popup__form">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          
+            <h2 class="popup__title">Редактировать профиль</h2>
             <input type="text" class="popup__input popup__input_value_name" name="name">
             <input type="text" class="popup__input popup__input_value_job" name="about">
             <button type="submit" class="popup__button">Сохранить</button>
@@ -49,8 +43,7 @@
         <div class="popup__container">
           <button type='button' class="popup__close-button"></button>
           <form name="popupForm" class="popup__form">
-          <h2 class="popup__title">Новое Место</h2>
-          
+            <h2 class="popup__title">Новое Место</h2>
             <input type="text" class="popup__input popup__input_value_place" name="name" placeholder="Название">
             <input type="text" class="popup__input popup__input_value_link" name="link" placeholder="Ссылка на картинку">
             <button type="submit" class="popup__button">Сохранить</button>
@@ -62,29 +55,27 @@
         <div class="popup__container">
           <button type='button' class="popup__close-button"></button>
           <img src="#" alt="Попап Фото" class="popup-photo__image">
-          <p class="popup-photo__name"></p>
+          <h3 class="popup-photo__name">Фото</h3>
         </div>
       </section>
     </main>
 
     <template id="template">
       <div class="element">
-          <div class="element__image" style="background-image: url('');">
-        <button type="button" class="element__trash"></button>
-          </div>
-      
+        <div class="element__image" style="background-image: url('');">
+          <button type="button" class="element__trash"></button>
+        </div>
         <div class="element__title">
-          <h2 class="element__name"></h2>
+          <h2 class="element__name">Имя</h2>
           <button type='button' class="element__group"></button>
         </div>
       </div>
     </template>
 
-    
-
     <footer class="footer">
       <h2 class="footer__title">© 2020 Mesto Russia</h2>
     </footer>
+
     <script src="./script/script.js"></script>
   </body>
 </html>
