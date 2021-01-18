@@ -2,7 +2,7 @@
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
-  transition: visibility 1s, opacity 1s linear !important;
+  transition: visibility 0.5s, opacity 0.5s linear !important;
 }
 
 
