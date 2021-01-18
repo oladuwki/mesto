@@ -13,12 +13,12 @@ let [formElement, formElementSecond] = document.querySelectorAll('.popup__form')
 let placeNameInput = document.querySelector('.popup__input_value_place');
 let linkInput = document.querySelector('.popup__input_value_link');
 let likeButtons = document.querySelectorAll('.element__group');
-let popUpPhotoCard = document.querySelector('.popup__photo');
+let popUpPhotoCard = document.querySelector('.popup__group-1');
 let popUpPhotoButton = document.querySelector('.elemen__image');
 const elementsContainer = document.querySelector('.elements');
 let removeCardButton = document.querySelector('.element__trash');
-let popUpPhotoImage = document.querySelector('.popup-photo__image');
-let popUpPhotoName = document.querySelector('.popup-photo__name');
+let popUpPhotoImage = document.querySelector('.popup__photo');
+let popUpPhotoName = document.querySelector('.popup__name');
 
 console.log(popUpCloseButtons);
 function popUpOpen() {
