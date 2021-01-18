@@ -46,6 +46,7 @@
 @import url(../blocks/popup/__name/popup__name.css);
 @import url(../blocks/popup/__contain/popup__contain.css);
 @import url(../blocks/popup/__cont/popup__cont.css);
+@import url(../blocks/popup/__close-btn/popup__close-btn.css);
 
 
 
