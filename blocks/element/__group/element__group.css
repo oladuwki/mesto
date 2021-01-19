@@ -15,5 +15,5 @@
 
 .element__group:hover {
   opacity: 0.5;
+  transition: opacity 0.5s linear;
 }
-
