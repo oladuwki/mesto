@@ -19,6 +19,7 @@ const popUpPhotoImage = document.querySelector('.popup__photo');
 const popUpPhotoName = document.querySelector('.popup__name');
 const cardTemplate = document.querySelector('#template').content;
 const elementsList = document.querySelector('.elements');
+const popups = document.querySelectorAll('.popup');
 
 
 function openPopup(popup) {
@@ -161,10 +162,13 @@ profileButton.addEventListener('click', () => {
 profileAddButton.addEventListener('click', () => {
   openPopup(popupCard);});
 popUpCloseButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    closePopup(popUp);
-    closePopup(popupCard);
-    closePopup(popUpPhotoCard);
-  })});
+  button.addEventListener('click', (evt) => {
+    const openedPopup = [...popups].find((popup) => {
+      return popup.classList.contains("popup_opened");
+    });
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  });});
 cardForm.addEventListener('submit', handleFormSubmit);
 editForm.addEventListener('submit', handleFormSubmitSecond);//событие нажатия кнопки 'сохранить'
