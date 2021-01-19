@@ -27,7 +27,8 @@
         <h2 style="display: none;">Заголовок</h2>
       </section>
 
-      <section class="popup">
+      <section class="popups">
+        <div class="popup">
         <div class="popup__container">
           <button type='button' class="popup__close-button"></button>
           <form name="popupForm" class="popup__form">
@@ -37,9 +38,11 @@
             <button type="submit" class="popup__button">Сохранить</button>
           </form>
         </div>
-      </section>
+      </div>
+      <!-- </section> -->
 
-      <section class="popup__place">
+      <!-- <section class="popup__place"> -->
+        <div class="popup popup_place_content">
         <div class="popup__container">
           <button type='button' class="popup__close-button"></button>
           <form name="popupForm" class="popup__form">
@@ -49,15 +52,15 @@
             <button type="submit" class="popup__button">Сохранить</button>
           </form>
         </div>
-      </section>
+      </div>
 
-      <section class="popup__group-1">
+      <div class="popup popup_group_photo">
         <div class="popup__cont">
           <button type='button' class="popup__close-button"></button>
           <img src="#" alt="Попап Фото" class="popup__photo">
           <h3 class="popup__name">Фото</h3>
         </div>
-      </section>
+      </div>
     </main>
 
     <template id="template">
