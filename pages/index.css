@@ -28,6 +28,7 @@
 @import url(../blocks/element/__trash/element__trash.css);
 
 
+
 /* popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__place/popup__place.css);
@@ -41,6 +42,7 @@
 @import url(../blocks/popup/__photo/popup__photo.css);
 @import url(../blocks/popup/__group-1/popup__group-1.css);
 @import url(../blocks/popup/__name/popup__name.css);
+@import url(../blocks/popup/_group/popup_group_photo.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__title/footer__title.css);
