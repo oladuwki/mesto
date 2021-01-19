@@ -31,10 +31,10 @@ function closePopup(popup) {
 }
 
 function openPopUpPhoto(card) {
-  popUpPhotoCard.classList.add('popup_opened');
+  openPopup(popUpPhotoCard);
   popUpPhotoImage.src = card.link;
   popUpPhotoName.textContent = card.name;
-  popUpPhotoName.textContent.alt = card.name;
+  popUpPhotoImage.alt = card.name;
 }
 
 function handleFormSubmit (evt) {
@@ -48,7 +48,7 @@ function togleLike(evt) {
   evt.target.classList.toggle('element__group_active');
 };
 
-let initialCards = [
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -78,34 +78,26 @@ let initialCards = [
 //создание шаблона карточки, принимая параметры ссылки и имени
 function getCardTemplate(card){
   const template = cardTemplate.cloneNode(true);
-  const popUpPhotoButtons = template.querySelectorAll('.element__image');
-  const popUpPhotoTitles = template.querySelectorAll('.element__name');
-  const removeCardButtons = template.querySelectorAll('.element__trash');
-  const likeButtons = template.querySelectorAll('.element__group');
+  const popUpPhotoButtons = template.querySelector('.element__image');
+  const popUpPhotoTitles = template.querySelector('.element__name');
+  const removeCardButtons = template.querySelector('.element__trash');
+  const likeButtons = template.querySelector('.element__group');
 
-  popUpPhotoButtons.forEach((button) => {
-    button.style.backgroundImage = "url('" + card.link + "')";
-  });
+  popUpPhotoButtons.style.backgroundImage = "url('" + card.link + "')";
+
   popUpPhotoTitles.textContent = card.name;
-  popUpPhotoButtons.forEach((button) => {
-    button.addEventListener('click', (evt) => {
+  
+  popUpPhotoButtons.addEventListener('click', (evt) => {
       if (evt.target.type !== "button"){
         openPopUpPhoto(card);
       }
     });
-  });
   
-  popUpPhotoTitles.forEach((title) => {
-    title.textContent = card.name;
-  });
-  removeCardButtons.forEach((button) => {
-    button.addEventListener('click', (evt) => {
+  removeCardButtons.addEventListener('click', (evt) => {
       removeCardTemplate(evt);
     });
-  });
-  likeButtons.forEach((button) => {
-    button.addEventListener('click', togleLike);
-  });
+    
+  likeButtons.addEventListener('click', togleLike);
   
   return template;
 };
