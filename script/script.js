@@ -4,9 +4,11 @@ const profileButton = profile.querySelector('.profile__info-btn');
 const profileAddButton = document.querySelector('.profile__add-button');
 const popUp = document.querySelector('.popup_profile_content');
 const popUpCloseButtons = document.querySelectorAll('.popup__close-button');
+const containers = document.querySelectorAll('popup__container');
 const popupCard = document.querySelector('.popup_place_content');
 const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
+const [inputsError] = document.querySelectorAll('.popup__input');
 const nameInput = document.querySelector('.popup__input_value_name');
 const jobInput = document.querySelector('.popup__input_value_job');
 const [cardForm, editForm] = document.querySelectorAll('.popup__form');
@@ -20,6 +22,7 @@ const popUpPhotoName = document.querySelector('.popup__name');
 const cardTemplate = document.querySelector('#template').content;
 const elementsList = document.querySelector('.elements');
 const popups = document.querySelectorAll('.popup');
+const [popupButton1, popupButton2] = document.querySelectorAll('.popup__button');
 
 
 function openPopup(popup) {
@@ -40,7 +43,9 @@ function openPopUpPhoto(card) {
 function handleFormSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
+  console.log(nameInput.value);
   profileJob.textContent = jobInput.value;
+  console.log(jobInput.value);
   closePopup(popUp);
 }
 
@@ -144,6 +149,26 @@ function removeCard(card) {
 
 function removeCardTemplate(evt) {
   evt.target.closest('.element').remove();
+};
+
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', (event) => {
+      if (event.target === event.currentTarget) {
+          closePopup(popup);
+      }
+  });
+});
+
+window.onkeydown = function( event ) {
+  if ( event.keyCode == 27 ) {
+    const openedPopup = [...popups].find((popup) => {
+      return popup.classList.contains("popup_opened");
+    });
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
 };
 
 profileButton.addEventListener('click', () => {
