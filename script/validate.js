@@ -1,63 +1,73 @@
-const defaultOptions = {
+const showInputError = (formElement, inputElement, errorMessage, form) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(form.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(form.errorClass);
+};
+
+const hideInputError = (formElement, inputElement, form) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(form.inputErrorClass);
+  errorElement.classList.remove(form.errorClass);
+  errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElement, inputElement, form) => {
+  if (!inputElement.validity.valid) {
+      showInputError(formElement, inputElement, inputElement.validationMessage, form);
+  }
+  else {
+      hideInputError(formElement, inputElement, form);
+  }
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement, form) => {
+  if (!hasInvalidInput(inputList)) {
+      buttonElement.classList.remove(form.inactiveButtonClass);
+      buttonElement.removeAttribute('disabled');
+  }
+  else {
+      buttonElement.setAttribute('disabled', true);
+      buttonElement.classList.add(form.inactiveButtonClass);
+  }
+}
+
+const setEventListeners = (formElement, form) => {
+  const inputList = Array.from(formElement.querySelectorAll(form.inputSelector));
+  const buttonElement = formElement.querySelector(form.submitButtonSelector);
+
+  inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', function () {
+          checkInputValidity(formElement, inputElement, form);
+          toggleButtonState(inputList, buttonElement, form);
+      });
+  });
+};
+
+const enableValidation = (form) => {
+  const formList = Array.from(document.querySelectorAll(form.formSelector));
+
+  formList.forEach((formElement) => {
+      formElement.addEventListener('submit', function (evt) {
+          evt.preventDefault();
+      });
+
+      setEventListeners(formElement, form);
+
+  });
+};
+
+enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-};
-const forms = [cardForm, editForm];
-const inputsAll = [inputsError];
-const popupButton = [popupButton1, popupButton2];
-
-cardForm.addEventListener('input', () => {
-  const isValid = nameInput.validity.valid && jobInput.validity.valid;
-  setSubmitButtonState(isValid, defaultOptions);
-  showErrors(cardForm, [nameInput, jobInput]);
 });
-
-editForm.addEventListener('input', () => {
-  const isValid = placeNameInput.validity.valid && linkInput.validity.valid ;
-  setSubmitButtonState(isValid, defaultOptions);
-  showErrors(editForm, [placeNameInput, linkInput]);
-});
-
-const showErrors = (form, inputs, options = defaultOptions) => {
-  inputs.forEach((input) => {
-    if(input.validity.valid) {
-      hideInputError(form, input);
-      
-    } else {
-      showInputError(form, input, input.validationMessage);
-    }
-      });
-}
-
-const showInputError = (formElement, inputElement, errorMessage, options = defaultOptions) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add(options.inputErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(options.errorClass);
-};
-
-const hideInputError = (formElement, inputElement, options = defaultOptions) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(options.inputErrorClass);
-  errorElement.classList.remove(options.errorClass);
-  errorElement.textContent = '';
-};
-
-function setSubmitButtonState(isFormValid, options = defaultOptions) {
-  if (isFormValid) {
-    popupButton.forEach((button) => {
-      button.removeAttribute('disabled');
-      button.classList.remove(options.inactiveButtonClass);
-    });
-  } else {
-    popupButton.forEach((button) => {
-      button.setAttribute('disabled', true);
-      button.classList.add(options.inactiveButtonClass);
-    });
-    
-  }
-}

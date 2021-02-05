@@ -27,11 +27,12 @@ const [popupButton1, popupButton2] = document.querySelectorAll('.popup__button')
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape); 
 }
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-}
+  document.removeEventListener('keydown', closeByEscape); 
+} 
 
 function openPopUpPhoto(card) {
   openPopup(popUpPhotoCard);
@@ -140,12 +141,7 @@ function createCard(card) {//добавление информации о кар
   prependCard(card);
 };
 
-function removeCard(card) {
-  initialCards = initialCards.filter((item) => {
-    return item.name !== card.name;
-  });
-  
-};
+
 
 function removeCardTemplate(evt) {
   evt.target.closest('.element').remove();
@@ -160,16 +156,12 @@ popups.forEach((popup) => {
   });
 });
 
-window.onkeydown = function( event ) {
-  if ( event.keyCode == 27 ) {
-    const openedPopup = [...popups].find((popup) => {
-      return popup.classList.contains("popup_opened");
-    });
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
   }
-};
+}
 
 profileButton.addEventListener('click', () => {
   openPopup(popUp);
