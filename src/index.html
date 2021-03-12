@@ -4,17 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     
     <header class="header">
-      <img src="./images/header.svg" alt="логотип 'Место'" class="header__logo">
+      <img src="./header.svg" alt="логотип 'Место'" class="header__logo">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img src="./images/profile__image.jpg" alt="Фото профиля" class="profile__avatar" />
+        <img src="./profile__image.jpg" alt="Фото профиля" class="profile__avatar" />
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type='button' class="profile__info-btn"></button>
@@ -33,7 +32,7 @@
               <h2 class="popup__title">Редактировать профиль</h2>
               <input type="text" id="input-name" class="popup__input popup__input_value_name" name="name" required minlength="2" maxlength="40">
               <span class="popup__span input-name-error"></span>
-              <input type="text" id="input-job" class="popup__input popup__input_value_job" name="about" required minlength="2" maxlength="200">
+              <input type="text" id="input-job" class="popup__input popup__input_value_job" name="job" required minlength="2" maxlength="200">
               <span class="popup__span input-job-error"></span>
               <button type="submit" class="popup__button">Сохранить</button>
             </form>
@@ -82,9 +81,5 @@
     <footer class="footer">
       <h2 class="footer__title">© 2020 Mesto Russia</h2>
     </footer>
-
-    <script language="JavaScript" type="module" src="./script/script.js"></script>
-    <script language="JavaScript" type="module" src="./script/Card.js"></script>
-    <script language="JavaScript" type="module" src="./script/FormValidator.js"></script>
   </body>
 </html>
