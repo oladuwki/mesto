@@ -1,23 +1,23 @@
-import FormValidator from "./script/FormValidator.js";
-import Card from "./script/Card.js";
-import Popup from "./script/Popup.js";
-import PopupWIthImage from "./script/PopupWIthImage.js";
-import PopupWIthForm from "./script/PopupWIthForm.js";
-import UserInfo from "./script/UserInfo.js";
-import Section from "./script/Section.js";
+import FormValidator from "../script/FormValidator.js";
+import Card from "../script/Card.js";
+import Popup from "../script/Popup.js";
+import PopupWithImage from "../script/PopupWithImage.js";
+import PopupWithForm from "../script/PopupWithForm.js";
+import UserInfo from "../script/UserInfo.js";
+import Section from "../script/Section.js";
 
-import './pages/index.css';
+import './index.css';
 
-import CloseIcon from "./images/CloseIcon.svg";
-import deleteImage from "./images/delete.svg";
-import headerImage from "./images/header.svg";
-import like from "./images/like.svg";
-import likeActive from "./images/likeactv.svg";
-import profileImage from "./images/profile__image.jpg";
-import trash from "./images/trash.svg";
-import vector from "./images/vector.svg";
-import vector1 from "./images/vector1.svg";
-import vector2 from "./images/vector2.svg";
+import CloseIcon from "../images/CloseIcon.svg";
+import deleteImage from "../images/delete.svg";
+import headerImage from "../images/header.svg";
+import like from "../images/like.svg";
+import likeActive from "../images/likeactv.svg";
+import profileImage from "../images/profile__image.jpg";
+import trash from "../images/trash.svg";
+import vector from "../images/vector.svg";
+import vector1 from "../images/vector1.svg";
+import vector2 from "../images/vector2.svg";
 
 
 
@@ -98,11 +98,9 @@ const initialCards = [
   }
 ];
 
-const userInfo = new UserInfo({profileName, profileJob});
+const userInfo = new UserInfo('.profile__name', '.profile__job');
 
-popups.forEach((popup) => {
- const item = new Popup(popup);
-})
+
 
 
 function handleFormSubmit (evt, data) {
@@ -117,7 +115,9 @@ function handleFormSubmitSecond(evt, data) {
     name: data.name,
     link: data.link
   };
-  createCard(dataCard);
+  
+  const createdCard = createCard(dataCard);
+  prependCard(createdCard);
 }
 
 function prependCard(card){
@@ -128,14 +128,17 @@ function appendCard(card){
   elementsList.append(card);
 };
 
+const popupWithImage = new PopupWithImage(popUpPhotoCard);
+
+
 function createCard(cardData) {
-  const popupWithImage = new PopupWIthImage(popUpPhotoCard, cardData.name, cardData.link);
 
+  const card = new Card(cardData, template, () => {
+    popupWithImage.open(cardData.name, cardData.link);
+  });
 
-  const card = new Card(cardData.name, cardData.link, template, popupWithImage.open.bind(popupWithImage));
-  const generetedCard = card.generateCard();
+  return card.generateCard();
   
-  prependCard(generetedCard);
 };
 
 
@@ -145,9 +148,8 @@ const editFormValidator = new FormValidator(settings, editForm);
 cardFormValidator.enableValidation();
 editFormValidator.enableValidation();
 
-const popupWithEditForm = new PopupWIthForm(popUpEdit, handleFormSubmit);
-
-const popupWithCardForm = new PopupWIthForm(popUpCreate, handleFormSubmitSecond);
+const popupWithEditForm = new PopupWithForm(popUpEdit, handleFormSubmit);
+const popupWithCardForm = new PopupWithForm(popUpCreate, handleFormSubmitSecond);
 
 
 profileButton.addEventListener('click', () => {
@@ -166,11 +168,8 @@ profileAddButton.addEventListener('click', () => {
 const cardSection = new Section({
   items: initialCards,
   renderer: (item) => { //получаем данные из массива
-    const popupWithImage = new PopupWIthImage(popUpPhotoCard, item.name, item.link);
-
-    const card = new Card(item.name, item.link, template, popupWithImage.open.bind(popupWithImage));
-    const generetedCard = card.generateCard();
-    appendCard(generetedCard);
+    const createdCard = createCard(item);
+    appendCard(createdCard);
   }
   
 }, '.elements');

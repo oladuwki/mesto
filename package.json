@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "GitHub Pages: https://oladuwki.github.io/mesto/ ### Обзор",
-  "main": "src/index.js",
+  "main": "src/pages/index.js",
   "scripts": {
     "build": "rimraf dist && webpack",
     "dev": "webpack serve"
