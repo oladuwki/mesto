@@ -13,7 +13,7 @@ class FormValidator {
     this._setEventListener();
   };
 
-  _resetValidation() {
+resetValidation() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement)
     });

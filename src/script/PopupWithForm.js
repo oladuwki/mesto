@@ -23,7 +23,11 @@ export default class PopupWIthForm extends Popup{
       this._handleFormSubmit(evt, this._getInputValues());
       super.close();
       this._form.reset();
-    });
-    
+    });  
+  }
+
+  close() {
+    super.close();
+    this._form.reset();
   }
 }

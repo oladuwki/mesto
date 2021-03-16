@@ -157,11 +157,11 @@ profileButton.addEventListener('click', () => {
   const {name, job} = userInfo.getUserInfo();
   nameInput.value = name;
   jobInput.value = job;
-  editFormValidator._resetValidation(); 
+  editFormValidator.resetValidation(); 
 });
 
 profileAddButton.addEventListener('click', () => {
-  cardFormValidator._resetValidation();
+  cardFormValidator.resetValidation();
   popupWithCardForm.open();
 });
 
