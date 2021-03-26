@@ -11,6 +11,7 @@
   background-repeat: no-repeat;
   overflow: hidden;
   object-fit: cover;
+  margin: auto;
 }
 
 .element__group:hover {

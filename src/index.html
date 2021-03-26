@@ -13,7 +13,9 @@
 
     <main class="content">
       <section class="profile">
-        <img src="./profile__image.jpg" alt="Фото профиля" class="profile__avatar" />
+        <button class="profile__avatar-btn">
+          <img src="./profile__image.jpg" alt="Фото профиля" class="profile__avatar" />
+        </button>>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type='button' class="profile__info-btn"></button>
@@ -62,20 +64,48 @@
           </div>
         </div>
         
+
+        <div class="popup popup_delete">
+          <div class="popup__container">
+            <button type='button' class="popup__close-button"></button>
+            <div class="popup__background">
+            <h2 class="popup__title">Вы уверены?</h2>
+              <button type="submit" class="popup__button">Да</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup popup_avatar">
+          <div class="popup__container"
+          id="container4">
+            <button type='button' class="popup__close-button"></button>
+            <form name="popupForm" class="popup__form" id="popup-form" novalidate>
+              <h2 class="popup__title">Обновить аватар</h2>
+              <input type="url" id="input-link" class="popup__input popup__input_value-avatar_link" name="link" required placeholder="Ссылка на картинку">
+              <span class="popup__span input-link-error"></span>
+              <button type="submit" class="popup__button popup__button_disabled" disabled>Сохранить</button>
+            </form>
+          </div>
+        </div>
+
       </section>
     </main>
 
     <template class="template">
-      <div class="element">
+      <div class="element" id="element">
         <div class="element__image" style="background-image: url('');">
           <button type="button" class="element__trash"></button>
         </div>
+        <div class="element__down">
         <div class="element__title">
           <h2 class="element__name">Имя</h2>
+        </div>
+        <div class="element__likes">
           <button type='button' class="element__group"></button>
+          <p class="element__group-number">0</p>
         </div>
       </div>
-      
+    </div>
     </template>
 
     <footer class="footer">

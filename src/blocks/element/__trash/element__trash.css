@@ -10,6 +10,7 @@
   margin-top: 18px;
   margin-right: 15px;
   cursor: pointer;
+  display: none;
 }
 
 .element__trash:hover {
