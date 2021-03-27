@@ -6,12 +6,15 @@ export default class Api {
   }
 
   getInitialCards() {
+    
     return fetch(`${this._options.baseUrl}/cards`, {
       headers: {
           authorization: `${this._options.headers.authorization}`,
           'Content-Type': 'application/json'
       }
     })
+    .then(this._getResponseData)
+    
       
   }
 
@@ -21,6 +24,7 @@ export default class Api {
     authorization: `${this._options.headers.authorization}`,
   }
 })
+.then (this._getResponseData)
   
   }
 
@@ -30,25 +34,28 @@ export default class Api {
     authorization: `${this._options.headers.authorization}`,
   }
 })
+.then (this._getResponseData)
   
   }
 
-  getHandleFormSubmit(body) {
+  sendProfile(body) {
     return fetch(`${this._options.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         authorization: `${this._options.headers.authorization}`,
         'Content-Type': 'application/json'
       }, body})
+      .then (this._getResponseData)
   }
 
-  getNewCard(body) {
+  sendCard(body) {
     return fetch(`${this._options.baseUrl}/cards`, {
   method: 'POST',
   headers: {
     authorization: `${this._options.headers.authorization}`,
     'Content-Type': 'application/json'
       }, body} )
+      .then (this._getResponseData)
   }
 
   deleteCard(cardId){
@@ -58,6 +65,7 @@ export default class Api {
           authorization: `${this._options.headers.authorization}`,
           'Content-Type': 'application/json'
         }})
+        .then (this._getResponseData)
   }
 
   putLikes(cardId){
@@ -67,6 +75,7 @@ export default class Api {
           authorization: `${this._options.headers.authorization}`,
           'Content-Type': 'application/json'
         }})
+        .then (this._getResponseData)
   }
 
   deleteLikes(cardId){
@@ -76,6 +85,7 @@ export default class Api {
           authorization: `${this._options.headers.authorization}`,
           'Content-Type': 'application/json'
         }})
+        .then (this._getResponseData)
   }
 
   changeAvatar(body) {
@@ -85,7 +95,15 @@ export default class Api {
     authorization: `${this._options.headers.authorization}`,
     'Content-Type': 'application/json'
   }, body})
+  .then (this._getResponseData)
   }
+
+  _getResponseData(res) {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`); 
+    }
+    return res.json();
+  } 
   // другие методы работы с API
 }
 

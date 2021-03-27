@@ -82,8 +82,9 @@ const avatarPopup = document.querySelector('.popup_avatar');
 const avatarInput = document.querySelector('.popup__input_value-avatar_link');
 
 let userId = null;
+let cardsId = null;
 
-const userInfo = new UserInfo('.profile__name', '.profile__job', '.profile__avatar');
+const userInfo = new UserInfo('.profile__name', '.profile__job', '.profile__avatar', userId);
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
@@ -99,21 +100,26 @@ export const api = new Api({
 function handleFormSubmit (evt, data) {
   evt.preventDefault();
   saveButtonText(editForm, true, 'Сохранение...');
-  userInfo.setUserInfo(data);
+  
 
    const body = JSON.stringify({
     name: data.name,
     about: data.job
   })
-  api.getHandleFormSubmit(body)
-  .then(res => res.json())
+  api.sendProfile(body)
+   
   .then((result) => {
     console.log(result);
-    profileName.textContent = result.name;
-    profileJob.textContent = result.about;
-    profileAvatar.src = result.avatar;
+    const {name, about, avatar, _id} = result;
+    
+    userInfo.setUserInfo({name, about, avatar, _id});
+    popupWithEditForm.close();
+  })
+  .catch( (err) => {
+    console.log(err);
+  })
+  .finally( () => {
     saveButtonText(editForm, false, 'Сохранить');
-
   });
 }
 
@@ -130,14 +136,20 @@ function handleFormSubmitSecond(evt, data) {
   })
   
 
-  api.getNewCard(body)
-  .then(res => res.json())
+  api.sendCard(body)
+   
   .then((result) => {
     console.log(result);
     const createdCard = createCard(result);
     prependCard(createdCard);
+    popupWithCardForm.close();
+  })
+  .catch( (err) => {
+    console.log(err);
+  })
+  .finally( () => {
     saveButtonText(cardForm, false, 'Сохранить');
-  }) 
+  });
 }
 
 function handleFormSubmitAvatar(evt, dataAvatar) {
@@ -149,10 +161,19 @@ function handleFormSubmitAvatar(evt, dataAvatar) {
   })
   
   api.changeAvatar(body)
-  .then(res => res.json())
+   
   .then((result) => {
     console.log(result);
-    profileAvatar.src = result.avatar;
+    
+    const {name, about, avatar, _id} = result;
+    
+    userInfo.setUserInfo({name, about, avatar, _id});
+    popupWithAvatarForm.close();
+  })
+  .catch( (err) => {
+    console.log(err);
+  })
+  .finally( () => {
     saveButtonText(changeAvatarForm, false, 'Сохранить');
   });
 }
@@ -168,38 +189,45 @@ function appendCard(card){
 };
 
 const popupWithImage = new PopupWithImage(popUpPhotoCard);
-
+const popupWithDelete = new PopupWithDelete(deletePopup);
 
 function createCard(cardData) {
+  
   const card = new Card(cardData, template, () => {
     popupWithImage.open(cardData.name, cardData.link);
-  }, () => {
-    const popupWithDelete = new PopupWithDelete(deletePopup, cardData._id);
-    popupWithDelete.open();
+  }, (_card) => {
+    
+    popupWithDelete.open(_card);
   },
-    (owner_id) => owner_id === userId,
+    (owner_id) => owner_id === userInfo.userId,
     (likes) => likes.some( (user) => {
       return userId === user._id; 
     }),
     (isLiked, setLikesCount, switchLike) => {
       if(isLiked) {
         api.deleteLikes(cardData._id)
-        .then(res => res.json())
+         
         .then((result) => {
           console.log(result);
           const { likes } = result;
           setLikesCount(likes.length);
           switchLike();
+        })
+        .catch( (err) => {
+          console.log(err);
         });
 
       } else {
         api.putLikes(cardData._id)
-        .then(res => res.json())
+         
         .then((result) => {
           console.log(result);
           const { likes } = result;
           setLikesCount(likes.length);
           switchLike();
+        })
+        .catch( (err) => {
+          console.log(err);
         });
       }
     }
@@ -244,42 +272,82 @@ profileAvatar.addEventListener('click', () => {
 
 
  
-api.getProfileInfo()
-.then(res => res.json())
-  .then((result) => {
-    console.log(result);
-    const { name, about, avatar, _id } = result;
-    profileName.textContent = name;
-    profileJob.textContent = about;
-    profileAvatar.src = avatar;
-    userId = _id;
-  });
 
-  
+
+Promise.all([     //в Promise.all передаем массив промисов которые нужно выполнить
+  api.getProfileInfo(),
+  api.getInitialCards()
+])
+  .then( ([profileInfo, initialCards]) => {
+    userInfo.setUserInfo(profileInfo);
+    renderCards(initialCards);
+  })
+  .catch((err)=>{     //попадаем сюда если один из промисов завершится ошибкой
+    console.log(err);
+  }) 
+
+
+// api.getProfileInfo()
+//  
+//   .then((result) => {
+//     console.log(result);
+//     const { name, about, avatar, _id } = result;
+//     profileName.textContent = name;
+//     profileJob.textContent = about;
+//     profileAvatar.src = avatar;
+//     userId = _id;
+//   })
+//   .catch( (err) => {
+//     console.log(err);
+//   });
+
+function renderCards(result) {
+   const cardSection = new Section({
+            items: result,
+            renderer: (item) => {
+              const createdCard = createCard(item);
+              appendCard(createdCard);
+            }  
+          }, '.elements');
+          cardSection.renderItems();
+}
+  //         const cardSection = new Section({
+  //           items: result,
+  //           renderer: (item) => {
+  //             const createdCard = createCard(item);
+  //             appendCard(createdCard);
+  //           }  
+  //         }, '.elements');
+  //         cardSection.renderItems();
+  //       }
 
  
   
 
-api.getInitialCards()
-  .then(res => res.json())
-      .then((result) => {
-        const cardSection = new Section({
-          items: result,
-          renderer: (item) => {
-            const createdCard = createCard(item);
-            appendCard(createdCard);
-          }  
-        }, '.elements');
-        cardSection.renderItems();
-      });
+// api.getInitialCards()
+//    
+//       .then((result) => {
+//         const cardSection = new Section({
+//           items: result,
+//           renderer: (item) => {
+//             const createdCard = createCard(item);
+//             appendCard(createdCard);
+//           }  
+//         }, '.elements');
+//         cardSection.renderItems();
+//       })
+//       .catch( (err) => {
+//         console.log(err);
+//       });
 
 
 
 api.getCardInfo()
-      .then(res => res.json())
+       
   .then((result) => {
-    
     console.log(result)
+    const { _id } = result;
+    cardsId = _id;
   });
  
 

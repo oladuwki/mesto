@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
     constructor(items, template, handleCardClick, openPopupWithDelete, isDeleteIconActive, isLikeByMe, handleLikeClick) {
       this._name = items.name;
       this._link = items.link;
@@ -13,6 +13,7 @@ class Card {
       this._handleLikeClick = handleLikeClick;
       this._isLiked = false;
       console.log(this._ownerId)
+      
     }
   
   generateCard() {
@@ -66,7 +67,7 @@ class Card {
     });
 
     this._element.querySelector('.element__trash').addEventListener('click', (evt) => {
-      this._openPopupWithDelete();
+      this._openPopupWithDelete(this);
     });
 
    
@@ -79,6 +80,9 @@ class Card {
   _switchLike() {
     this._isLiked = !this._isLiked;
   }
-}
 
-export default Card;
+  _deleteCard() {
+    this._element.remove();
+    console.log(this._element)
+  }
+}

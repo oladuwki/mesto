@@ -3,10 +3,9 @@ import { api } from "../pages/index.js";
 
 
 export default class PopupWithDelete extends Popup {
-  constructor(popup, cardId) {
+  constructor(popup) {
     super(popup);
-    this._cardId = cardId;
-    this._elementCard = document.getElementById(cardId);
+    this._card = null;
   }
 
   setEventListeners() {
@@ -15,14 +14,22 @@ export default class PopupWithDelete extends Popup {
     this._popup.querySelector('.popup__button').addEventListener('click', (evt) => {
       evt.preventDefault();
       console.log(evt)
-      api.deleteCard(this._cardId)
-        .then(res => res.json())
+      if(this._card) {
+        api.deleteCard(this._card._cardId)
+          
         .then((result) => {
           console.log(result);
           this.close();
-          this._elementCard.remove(result);
+          this._card._deleteCard();
+          this._card = null;
         })
+      }
     });  
+  }
+
+  open(_card) {
+   this._card = _card;
+    super.open();
   }
 
   // _removeCardTemplate(evt) {
