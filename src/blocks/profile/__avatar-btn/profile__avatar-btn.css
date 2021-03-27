@@ -16,3 +16,9 @@
   cursor: pointer;
   background-image: url('../../../images/Vector123.svg');
 }
+
+@media screen and (max-width: 768px) {
+  .profile__avatar-btn {
+    margin: 0%;
+  }
+}
