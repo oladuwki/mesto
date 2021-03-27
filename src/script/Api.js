@@ -6,36 +6,31 @@ export default class Api {
   }
 
   getInitialCards() {
-    
     return fetch(`${this._options.baseUrl}/cards`, {
       headers: {
-          authorization: `${this._options.headers.authorization}`,
-          'Content-Type': 'application/json'
+        authorization: `${this._options.headers.authorization}`,
+        'Content-Type': 'application/json'
       }
     })
     .then(this._getResponseData)
-    
-      
   }
 
   getProfileInfo() {
-   return fetch(`${this._options.baseUrl}/users/me`, {
-  headers: {
-    authorization: `${this._options.headers.authorization}`,
-  }
-})
-.then (this._getResponseData)
-  
+    return fetch(`${this._options.baseUrl}/users/me`, {
+      headers: {
+        authorization: `${this._options.headers.authorization}`,
+      }
+    })
+    .then (this._getResponseData)
   }
 
   getCardInfo() {
     return fetch(`${this._options.baseUrl}/cards`, {
-  headers: {
-    authorization: `${this._options.headers.authorization}`,
-  }
-})
-.then (this._getResponseData)
-  
+      headers: {
+        authorization: `${this._options.headers.authorization}`,
+      }
+    })
+    .then (this._getResponseData)
   }
 
   sendProfile(body) {
@@ -50,52 +45,52 @@ export default class Api {
 
   sendCard(body) {
     return fetch(`${this._options.baseUrl}/cards`, {
-  method: 'POST',
-  headers: {
-    authorization: `${this._options.headers.authorization}`,
-    'Content-Type': 'application/json'
-      }, body} )
-      .then (this._getResponseData)
+      method: 'POST',
+      headers: {
+        authorization: `${this._options.headers.authorization}`,
+        'Content-Type': 'application/json'
+          }, body})
+    .then (this._getResponseData)
   }
 
   deleteCard(cardId){
     return fetch(`${this._options.baseUrl}/cards/${cardId}`, {
-        method: 'DELETE',
-        headers: {
-          authorization: `${this._options.headers.authorization}`,
-          'Content-Type': 'application/json'
-        }})
-        .then (this._getResponseData)
+      method: 'DELETE',
+      headers: {
+        authorization: `${this._options.headers.authorization}`,
+        'Content-Type': 'application/json'
+      }})
+    .then (this._getResponseData)
   }
 
   putLikes(cardId){
     return fetch(`${this._options.baseUrl}/cards/likes/${cardId}`, {
-        method: 'PUT',
-        headers: {
-          authorization: `${this._options.headers.authorization}`,
-          'Content-Type': 'application/json'
-        }})
-        .then (this._getResponseData)
+      method: 'PUT',
+      headers: {
+        authorization: `${this._options.headers.authorization}`,
+        'Content-Type': 'application/json'
+      }})
+    .then (this._getResponseData)
   }
 
   deleteLikes(cardId){
     return fetch(`${this._options.baseUrl}/cards/likes/${cardId}`, {
-        method: 'DELETE',
-        headers: {
-          authorization: `${this._options.headers.authorization}`,
-          'Content-Type': 'application/json'
-        }})
-        .then (this._getResponseData)
+      method: 'DELETE',
+      headers: {
+        authorization: `${this._options.headers.authorization}`,
+        'Content-Type': 'application/json'
+      }})
+    .then (this._getResponseData)
   }
 
   changeAvatar(body) {
     return fetch(`${this._options.baseUrl}/users/me/avatar`, {
-  method: 'PATCH',
-  headers: {
-    authorization: `${this._options.headers.authorization}`,
-    'Content-Type': 'application/json'
-  }, body})
-  .then (this._getResponseData)
+      method: 'PATCH',
+      headers: {
+        authorization: `${this._options.headers.authorization}`,
+        'Content-Type': 'application/json'
+      }, body})
+    .then (this._getResponseData)
   }
 
   _getResponseData(res) {
@@ -103,8 +98,7 @@ export default class Api {
         return Promise.reject(`Ошибка: ${res.status}`); 
     }
     return res.json();
-  } 
-  // другие методы работы с API
+  }
 }
 
 

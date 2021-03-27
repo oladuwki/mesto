@@ -94,22 +94,19 @@ export const api = new Api({
   }
 });
 
-
-
-
 function handleFormSubmit (evt, data) {
   evt.preventDefault();
   saveButtonText(editForm, true, 'Сохранение...');
-  
-
-   const body = JSON.stringify({
+   
+  const body = JSON.stringify({
     name: data.name,
     about: data.job
   })
-  api.sendProfile(body)
-   
+
+  api.sendProfile(body) 
   .then((result) => {
     console.log(result);
+
     const {name, about, avatar, _id} = result;
     
     userInfo.setUserInfo({name, about, avatar, _id});
@@ -122,9 +119,6 @@ function handleFormSubmit (evt, data) {
     saveButtonText(editForm, false, 'Сохранить');
   });
 }
-
-
-
 
 function handleFormSubmitSecond(evt, data) {
   evt.preventDefault();
@@ -160,8 +154,7 @@ function handleFormSubmitAvatar(evt, dataAvatar) {
    avatar: dataAvatar.link
   })
   
-  api.changeAvatar(body)
-   
+  api.changeAvatar(body)  
   .then((result) => {
     console.log(result);
     
@@ -178,8 +171,6 @@ function handleFormSubmitAvatar(evt, dataAvatar) {
   });
 }
 
-
-
 function prependCard(card){
   elementsList.prepend(card);
 };
@@ -192,11 +183,9 @@ const popupWithImage = new PopupWithImage(popUpPhotoCard);
 const popupWithDelete = new PopupWithDelete(deletePopup);
 
 function createCard(cardData) {
-  
   const card = new Card(cardData, template, () => {
     popupWithImage.open(cardData.name, cardData.link);
   }, (_card) => {
-    
     popupWithDelete.open(_card);
   },
     (owner_id) => owner_id === userInfo.userId,
@@ -204,37 +193,36 @@ function createCard(cardData) {
       return userId === user._id; 
     }),
     (isLiked, setLikesCount, switchLike) => {
-      if(isLiked) {
-        api.deleteLikes(cardData._id)
-         
-        .then((result) => {
-          console.log(result);
-          const { likes } = result;
-          setLikesCount(likes.length);
-          switchLike();
-        })
-        .catch( (err) => {
-          console.log(err);
-        });
+        if(isLiked) {
+          api.deleteLikes(cardData._id)
+          .then((result) => {
+            console.log(result);
 
-      } else {
-        api.putLikes(cardData._id)
-         
-        .then((result) => {
-          console.log(result);
-          const { likes } = result;
-          setLikesCount(likes.length);
-          switchLike();
-        })
-        .catch( (err) => {
-          console.log(err);
-        });
-      }
-    }
-    )
+            const { likes } = result;
+
+            setLikesCount(likes.length);
+            switchLike();
+          })
+          .catch( (err) => {
+            console.log(err);
+          });
+        } else {
+          api.putLikes(cardData._id)
+          .then((result) => {
+            console.log(result);
+
+            const { likes } = result;
+            
+            setLikesCount(likes.length);
+            switchLike();
+          })
+          .catch( (err) => {
+            console.log(err);
+          });
+        }
+      })
   return card.generateCard();
 };
-
 
 const cardFormValidator = new FormValidator(settings, cardForm);
 const editFormValidator = new FormValidator(settings, editForm);
@@ -266,14 +254,6 @@ profileAvatar.addEventListener('click', () => {
   popupWithAvatarForm.open();
 });
 
-// const api = new Api(options);
-// api.getProfileInfo();
-
-
-
- 
-
-
 Promise.all([     //в Promise.all передаем массив промисов которые нужно выполнить
   api.getProfileInfo(),
   api.getInitialCards()
@@ -284,74 +264,26 @@ Promise.all([     //в Promise.all передаем массив промисо�
   })
   .catch((err)=>{     //попадаем сюда если один из промисов завершится ошибкой
     console.log(err);
-  }) 
-
-
-// api.getProfileInfo()
-//  
-//   .then((result) => {
-//     console.log(result);
-//     const { name, about, avatar, _id } = result;
-//     profileName.textContent = name;
-//     profileJob.textContent = about;
-//     profileAvatar.src = avatar;
-//     userId = _id;
-//   })
-//   .catch( (err) => {
-//     console.log(err);
-//   });
+  })
 
 function renderCards(result) {
    const cardSection = new Section({
-            items: result,
-            renderer: (item) => {
-              const createdCard = createCard(item);
-              appendCard(createdCard);
-            }  
-          }, '.elements');
-          cardSection.renderItems();
+      items: result,
+      renderer: (item) => {
+        const createdCard = createCard(item);
+        appendCard(createdCard);
+      }  
+    }, '.elements');
+  cardSection.renderItems();
 }
-  //         const cardSection = new Section({
-  //           items: result,
-  //           renderer: (item) => {
-  //             const createdCard = createCard(item);
-  //             appendCard(createdCard);
-  //           }  
-  //         }, '.elements');
-  //         cardSection.renderItems();
-  //       }
 
- 
-  
-
-// api.getInitialCards()
-//    
-//       .then((result) => {
-//         const cardSection = new Section({
-//           items: result,
-//           renderer: (item) => {
-//             const createdCard = createCard(item);
-//             appendCard(createdCard);
-//           }  
-//         }, '.elements');
-//         cardSection.renderItems();
-//       })
-//       .catch( (err) => {
-//         console.log(err);
-//       });
-
-
-
-api.getCardInfo()
-       
+api.getCardInfo()   
   .then((result) => {
     console.log(result)
     const { _id } = result;
     cardsId = _id;
   });
  
-
-
 function saveButtonText(popupForm, status, textButton) {
   if(status) {
     popupForm.querySelector('.popup__button').textContent = textButton;

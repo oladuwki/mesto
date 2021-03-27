@@ -25,8 +25,6 @@ export default class Popup {
   }
 
   _handleOverlayClose(evt) {
-    
-    // const overlayClosed = ;
     if (evt.target === evt.currentTarget) {
       this.close();
     }
@@ -37,7 +35,6 @@ export default class Popup {
     
     popUpCloseButton.addEventListener('click', (evt) => {
       this.close(evt);
-      console.log(popUpCloseButton);
-      });
-    }
+    });
   }
+}

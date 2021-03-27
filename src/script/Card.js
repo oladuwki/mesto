@@ -1,20 +1,20 @@
 export default class Card {
-    constructor(items, template, handleCardClick, openPopupWithDelete, isDeleteIconActive, isLikeByMe, handleLikeClick) {
-      this._name = items.name;
-      this._link = items.link;
-      this._likes = items.likes;
-      this._cardId = items._id;
-      this._ownerId = items.owner._id;
-      this._template = template;
-      this._handleCardClick = handleCardClick;
-      this._openPopupWithDelete = openPopupWithDelete;
-      this._isDeleteIconActive = isDeleteIconActive;
-      this._isLikeByMe = isLikeByMe;
-      this._handleLikeClick = handleLikeClick;
-      this._isLiked = false;
-      console.log(this._ownerId)
-      
-    }
+  constructor(items, template, handleCardClick, openPopupWithDelete, isDeleteIconActive, isLikeByMe, handleLikeClick) {
+    this._name = items.name;
+    this._link = items.link;
+    this._likes = items.likes;
+    this._cardId = items._id;
+    this._ownerId = items.owner._id;
+    this._template = template;
+    this._handleCardClick = handleCardClick;
+    this._openPopupWithDelete = openPopupWithDelete;
+    this._isDeleteIconActive = isDeleteIconActive;
+    this._isLikeByMe = isLikeByMe;
+    this._handleLikeClick = handleLikeClick;
+    this._isLiked = false;
+    console.log(this._ownerId)
+    
+  }
   
   generateCard() {
     this._element = this._getTemplate();
@@ -35,7 +35,6 @@ export default class Card {
       this._element.querySelector('.element__group').classList.add('element__group_active');
     };
 
-
     return this._element;
   }
 
@@ -44,14 +43,6 @@ export default class Card {
 
     return cardTemplate;
   }
-
-  
-
-  // _closeByEscape(evt) {
-  //   if (evt.key === 'Escape') {
-  //     this._handleClosePopup();
-  //   }
-  // }
 
   _setEventListeners() {
     this._element.querySelector('.element__image').addEventListener('click', (evt) => {
@@ -63,14 +54,11 @@ export default class Card {
     this._element.querySelector('.element__group').addEventListener('click', (evt) => { 
       evt.target.classList.toggle('element__group_active');
       this._handleLikeClick(this._isLiked, this._setLikesCount.bind(this), this._switchLike.bind(this));
-      
     });
 
     this._element.querySelector('.element__trash').addEventListener('click', (evt) => {
       this._openPopupWithDelete(this);
     });
-
-   
   }  
 
   _setLikesCount(likesNumber) {
