@@ -69,7 +69,7 @@ export default class Card {
     this._isLiked = !this._isLiked;
   }
 
-  _deleteCard() {
+  deleteCard() {
     this._element.remove();
     console.log(this._element)
   }

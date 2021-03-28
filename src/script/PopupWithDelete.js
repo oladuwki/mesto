@@ -17,7 +17,7 @@ export default class PopupWithDelete extends Popup {
         .then((result) => {
           console.log(result);
           this.close();
-          this._card._deleteCard();
+          this._card.deleteCard();
           this._card = null;
         })
       }
